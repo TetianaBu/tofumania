@@ -7,7 +7,7 @@ import logoIcon from "../../../public/logo.svg";
 function Logo() {
   return (
     <div className={styles.logoWrapper}>
-      <Image priority src={logoIcon} alt="Logo (Image of Tofcio)" />
+      <Image src={logoIcon} alt="Logo (Image of Tofcio)" />
     </div>
   );
 }
