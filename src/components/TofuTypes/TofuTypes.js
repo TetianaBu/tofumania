@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Fragment } from "react";
 import { FIRMNESSLEVELS } from "../../constants";
 import styles from "./TofuTypes.module.css";
 import DetailsModal from "./DetailsModal";
@@ -14,12 +14,8 @@ function TofuTypes() {
         <h2 className={styles.title}>Options</h2>
         <ul className={styles.list}>
           {FIRMNESSLEVELS.map((item, index) => (
-            <>
-              <li
-                className={styles.listItem}
-                key={index}
-                onClick={toggleIsModalOpen}
-              >
+            <Fragment key={index}>
+              <li className={styles.listItem} onClick={toggleIsModalOpen}>
                 <button className={styles.OpenModalBtn}>{item.type}</button>
               </li>
               {isModalOpen && (
@@ -28,7 +24,7 @@ function TofuTypes() {
                   handleDismiss={toggleIsModalOpen}
                 />
               )}
-            </>
+            </Fragment>
           ))}
         </ul>
       </div>

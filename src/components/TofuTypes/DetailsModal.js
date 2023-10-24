@@ -10,8 +10,6 @@ import ScreenReaderText from "@/components/ScreenReaderText";
 function DetailsModal({ firmnessLevel, handleDismiss }) {
   const { characteristics, usage, type } = firmnessLevel;
 
-  console.log(handleDismiss, "handleDismiss");
-
   React.useEffect(() => {
     function handleKeyDown(event) {
       if (event.code === "Escape") {
