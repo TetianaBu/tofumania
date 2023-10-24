@@ -1,0 +1,36 @@
+.container {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.title {
+  justify-self: center;
+  text-transform: uppercase;
+}
+
+.list {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.listItem {
+  list-style: none;
+  display: grid;
+  place-content: center;
+}
+
+.OpenModalBtn {
+  color: inherit;
+  border: 1px dashed var(--orange);
+  background-color: var(--orange10);
+  width: 150px;
+  height: 60px;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
