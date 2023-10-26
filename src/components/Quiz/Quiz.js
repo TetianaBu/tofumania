@@ -1,53 +1,43 @@
 "use client";
 import React, { useState } from "react";
-
-import InitialQuestion from "./InitialQuestion";
+import Link from "next/link";
 
 import styles from "./Quiz.module.css";
 import { QUIZ_DATA } from "../../data";
 
-const [initialQuestion, general, detailed] = [QUIZ_DATA.initial, QUIZ_DATA.general, QUIZ_DATA.detailed]
-
-
 function Quiz() {
-  const [activeStates, setActiveStates] = useState([false, false]);
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   function toggleIsActive(index) {
-    const newActiveStates = [...activeStates];
-    newActiveStates[index] = !newActiveStates[index];
-    setActiveStates(newActiveStates);
+    setActiveIndex(activeIndex === index ? -1 : index);
   }
 
   return (
     <div className={styles.container}>
-      <InitialQuestion>{initialQuestion.text}</InitialQuestion>
-      <div className={styles.column}>
-        <p className={styles.cell} onClick={() => toggleIsActive(0)}>
-          {general.text}
-        </p>
+      <h2 className={styles.initialQuestion}>{QUIZ_DATA.initial.text}</h2>
 
-        {general.action && activeStates[0] && (
-          <p className={`${styles.cell}`}>{general.action.message}</p>
-        )}
-      </div>
-      <div className={styles.column}>
-        <p className={styles.cell}>{detailed.text}</p>
-        <div className={styles.subGrid}>
-          {detailed.subQuestions.map((q, i) => (
-            <div key={`subQuestion_${i}`} className={styles.column}>
-              <p
-                className={styles.cell}
-                onClick={() => toggleIsActive(`subQuestion_${i}`)}
-              >
-                {q.text}
-              </p>
-              {q.action && activeStates[`subQuestion_${i}`] && (
-                <p className={styles.cell}>{q.action.message}</p>
-              )}
+      {QUIZ_DATA.detailed.map((option, index) => (
+        <div className={styles.column} key={index}>
+          <p className={styles.cell} onClick={() => toggleIsActive(index)}>
+            {console.log(option.text)}
+            {option.text}
+          </p>
+          {activeIndex === index && (
+            <div className={styles.subGrid}>
+              {option.subQuestions.map((a, i) => (
+                <div key={`subQuestion_${i}`} className={styles.column}>
+                  <Link
+                    href={option.subQuestions[i].action.link}
+                    className={styles.cell}
+                  >
+                    {a.text}{" "}
+                  </Link>
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
-      </div>
+      ))}
     </div>
   );
 }

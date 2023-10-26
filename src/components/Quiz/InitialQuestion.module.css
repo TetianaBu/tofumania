@@ -1,7 +1,0 @@
-.cell {
-    width: 100%;
-    border: 1px dashed var(--orange);
-    background-color: var(--orange10);
-    padding: 0.5rem 1.5rem;
-    cursor: pointer;
-  }
