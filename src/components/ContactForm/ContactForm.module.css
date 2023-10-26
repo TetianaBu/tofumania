@@ -1,3 +1,6 @@
+.form {
+  max-width: 640px;
+}
 .form,
 .formGroupsContainer {
   display: flex;
@@ -16,11 +19,11 @@
   padding: 0.5rem 1.5rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 540px) {
   .formGroupsContainer {
     flex-direction: row;
   }
-  
+
   .formGroupsContainer > .formGroup {
     flex-basis: 50%;
   }

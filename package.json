@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "new-component": "^5.0.2",
     "next": "13.5.5",
     "next-i18next": "^14.0.3",
     "next-mdx-remote": "^4.4.1",

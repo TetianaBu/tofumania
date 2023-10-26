@@ -6,7 +6,7 @@ function Contact() {
   return (
     <article className={styles.container}>
       <section>
-        <h1>Contact Tofcio</h1>
+        <h1>Contact Tofcunio</h1>
         <p>Get in touch and let me know how I can help</p>
       </section>
       <ContactForm />
