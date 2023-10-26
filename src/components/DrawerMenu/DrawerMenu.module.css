@@ -1,0 +1,6 @@
+.container {
+    position: absolute;
+    transform: translate(-100%);
+    background-color: black;
+    padding: 2rem;
+}

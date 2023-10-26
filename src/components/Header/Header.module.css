@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: var(--green10);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuButton {
+  background: transparent;
+  border: none;
+  color: inherit;
+}
