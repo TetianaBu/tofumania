@@ -1,6 +1,8 @@
 import { Jura } from "next/font/google";
 import "./reset.css";
-
+import styles from "./homepage.module.css";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { APPTITLE } from "../constants";
 
 const jura = Jura({
@@ -17,7 +19,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={jura.className}>
-      <body>{children}</body>
+      <body className={styles.container}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

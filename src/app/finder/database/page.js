@@ -1,4 +1,5 @@
+import SearchForm from "@/components/SearchForm";
 
 export default function DataBase() {
-  return <div>database</div>;
+  return <SearchForm />;
 }

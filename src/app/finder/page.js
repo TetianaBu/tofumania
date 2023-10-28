@@ -1,3 +1,6 @@
-export default function Finder() {
-  return <div>finder</div>;
+import Finder from "@/components/Finder";
+
+
+export default function FinderPage() {
+  return <Finder />;
 }
