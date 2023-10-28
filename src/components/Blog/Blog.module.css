@@ -1,0 +1,12 @@
+.container {
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  grid-template-rows: auto 1fr;
+  gap: 2rem;
+}
+
+.intro {
+  grid-column: span 2;
+  text-align: center;
+}
