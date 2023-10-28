@@ -1,0 +1,5 @@
+.container {
+  border-bottom: 1px dotted var(--lightYellow);
+  border-left: 1px dotted var(--lightYellow);
+  padding: 1rem;
+}
