@@ -7,7 +7,7 @@ import FocusLock from "react-focus-lock";
 import { RemoveScroll } from "react-remove-scroll";
 import useEscapeKey from "../../lib/use-escape-key";
 
-useEscapeKey;
+
 function DrawerMenu({ handleDismiss }) {
   useEscapeKey(handleDismiss);
 
