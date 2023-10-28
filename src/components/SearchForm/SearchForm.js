@@ -5,7 +5,7 @@ import SearchResult from "./SearchResult.js";
 
 import styles from "./SearchForm.module.css";
 
-const ENDPOINT = "http://localhost:5001/api/data";
+const ENDPOINT = "/api/data";
 
 function SearchForm() {
   const [searchTerm, setSearchTerm] = useState("");
