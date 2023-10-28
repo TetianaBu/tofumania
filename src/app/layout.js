@@ -1,5 +1,4 @@
 import { Jura } from "next/font/google";
-import "./reset.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { APPTITLE } from "../constants";
