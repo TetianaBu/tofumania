@@ -26,24 +26,28 @@ function DrawerMenu({ handleDismiss }) {
                 <li onClick={handleDismiss}>
                   <Link href="/">Main</Link>
                 </li>
-                <li onClick={handleDismiss}>
-                  <Link href="/finder">Finder</Link>
-                  <ul>
-                    <li onClick={handleDismiss}>
+                <li>
+                  <div onClick={handleDismiss}>
+                    <Link href="/finder">Finder</Link>
+                  </div>
+                  <ul onClick={handleDismiss}>
+                    <li>
                       <Link href="/finder/database">DataBase</Link>
                     </li>
-                    <li onClick={handleDismiss}>
+                    <li>
                       <Link href="/finder/firmness">Firmness</Link>
                     </li>
                   </ul>
                 </li>
-                <li onClick={handleDismiss}>
-                  <Link href="/blog">Blog</Link>
-                  <ul>
-                    <li onClick={handleDismiss}>
+                <li>
+                  <div onClick={handleDismiss}>
+                    <Link href="/blog">Blog</Link>
+                  </div>
+                  <ul onClick={handleDismiss}>
+                    <li>
                       <Link href="/blog/learn">Learn</Link>
                     </li>
-                    <li onClick={handleDismiss}>
+                    <li>
                       <Link href="/blog/inspo">Inspo</Link>
                     </li>
                   </ul>
