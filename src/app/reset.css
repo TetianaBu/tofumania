@@ -20,13 +20,14 @@
   --green10: hsla(133, 57%, 64%, 0.1);
   --lightYellow: hsl(61, 67%, 87%);
   --pink: hsl(340, 57%, 64%);
-
 }
 
 body {
   background-color: var(--black);
   color: var(--white);
   min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 a {
