@@ -2,11 +2,9 @@
 import React from "react";
 import styles from "./ContactForm.module.css";
 
-// const ENDPOINT ="https://tofcio-test-api.vercel.app/api/contact";
-
 // todo 1)create valid endpoint 2) validate data on backend
 
-const ENDPOINT = "https://jsonplaceholder.typicode.com/posts/";
+const ENDPOINT = "http://localhost:3301/api/forms";
 
 function ContactForm() {
   const [name, setName] = React.useState("");
@@ -28,6 +26,9 @@ function ContactForm() {
 
     const response = await fetch(ENDPOINT, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         name,
         email,
@@ -47,7 +48,7 @@ function ContactForm() {
     <form onSubmit={handleSubmit} className={styles.form}>
       <div className={styles.formGroupsContainer}>
         <div className={styles.formGroup}>
-          <label htmlFor="name-field">Name:</label>
+          <label htmlFor={nameId}>Name:</label>
           <input
             className={styles.input}
             id={nameId}
@@ -55,6 +56,7 @@ function ContactForm() {
             required
             type="text"
             aria-label="Name"
+            autoComplete="on"
             value={name}
             onChange={(event) => {
               setName(event.target.value);
@@ -62,7 +64,7 @@ function ContactForm() {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="email-field">Email:</label>
+          <label htmlFor={emailId}>Email:</label>
           <input
             className={styles.input}
             id={emailId}
@@ -71,6 +73,7 @@ function ContactForm() {
             disabled={status === "loading"}
             type="email"
             aria-label="Email address"
+            autoComplete="on"
             value={email}
             onChange={(event) => {
               setEmail(event.target.value);
@@ -79,7 +82,7 @@ function ContactForm() {
         </div>
       </div>
       <div className={styles.formGroup}>
-        <label htmlFor="message-field">Your message:</label>
+        <label htmlFor={messageId}>Your message:</label>
         <textarea
           className={styles.input}
           id={messageId}

@@ -1,0 +1,9 @@
+.container {
+  background-color: hsl(0, 0%, 14%);
+  text-align: center;
+  padding: 1rem 2rem;
+}
+
+.container p {
+  font-size: 90%;
+}

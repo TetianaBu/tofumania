@@ -11,10 +11,13 @@
 .cell,
 .initialQuestion {
   border: 1px dashed var(--green);
-  background-color: var(--green10);
+  background-color: hsl(0, 0%, 14%);
   padding: 0.5rem 1.5rem;
-  cursor: pointer;
   position: relative;
+}
+
+.cell {
+  cursor: pointer;
 }
 
 .initialQuestion {

@@ -1,12 +1,19 @@
 "use client";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { FIRMNESSLEVELS } from "../../constants";
 import styles from "./TofuTypes.module.css";
 import DetailsModal from "./DetailsModal";
-import useToggle from "./use-toggle";
 
 function TofuTypes() {
-  const [isModalOpen, toggleIsModalOpen] = useToggle(false);
+  const [isModalOpenArray, setIsModalOpenArray] = useState(
+    FIRMNESSLEVELS.map(() => false)
+  );
+
+  const toggleModal = (index) => {
+    const newModalOpenArray = [...isModalOpenArray];
+    newModalOpenArray[index] = !newModalOpenArray[index];
+    setIsModalOpenArray(newModalOpenArray);
+  };
 
   return (
     <>
@@ -15,13 +22,18 @@ function TofuTypes() {
         <ul className={styles.list}>
           {FIRMNESSLEVELS.map((item, index) => (
             <Fragment key={index}>
-              <li className={styles.listItem} onClick={toggleIsModalOpen}>
-                <button className={styles.OpenModalBtn}>{item.type}</button>
+              <li className={styles.listItem}>
+                <button
+                  className={styles.OpenModalBtn}
+                  onClick={() => toggleModal(index)}
+                >
+                  {item.type}
+                </button>
               </li>
-              {isModalOpen && (
+              {isModalOpenArray[index] && (
                 <DetailsModal
                   firmnessLevel={item}
-                  handleDismiss={toggleIsModalOpen}
+                  handleDismiss={() => toggleModal(index)}
                 />
               )}
             </Fragment>

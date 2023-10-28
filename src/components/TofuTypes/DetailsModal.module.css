@@ -9,7 +9,8 @@
 .backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(28, 25, 25, 0.9);
+  background: var(--black10);
+  backdrop-filter: blur(3px);
 }
 
 .modal {
@@ -19,7 +20,7 @@
   width: 350px;
   border: 1px solid var(--green);
   border-radius: 0.5rem;
-  background-color: rgb(34, 37, 28);
+  background-color: var(--darkBlack);
   display: flex;
   flex-direction: column;
 }
@@ -38,8 +39,7 @@
   top: 0;
   right: 0;
   padding: 1rem;
-  color: inherit;
-  transform: translateY(-100%);
+  color: var(--pink);
   cursor: pointer;
   background: transparent;
 }

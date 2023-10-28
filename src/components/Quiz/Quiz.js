@@ -19,7 +19,6 @@ function Quiz() {
       {QUIZ_DATA.detailed.map((option, index) => (
         <div className={styles.column} key={index}>
           <p className={styles.cell} onClick={() => toggleIsActive(index)}>
-            {console.log(option.text)}
             {option.text}
           </p>
           {activeIndex === index && (

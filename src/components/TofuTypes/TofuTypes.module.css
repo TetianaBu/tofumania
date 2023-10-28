@@ -1,15 +1,18 @@
 .container {
   display: grid;
+  grid-template-rows: auto 1fr;
   gap: 2rem;
-  padding: 2rem;
+  padding: 4rem 2rem 2rem;
 }
 
 .title {
+  text-align: center;
   justify-self: center;
   text-transform: uppercase;
 }
 
 .list {
+  align-self: start;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -26,8 +29,8 @@
 
 .OpenModalBtn {
   color: inherit;
-  border: 1px dashed var(--orange);
-  background-color: var(--orange10);
+  border: 1px dashed var(--green);
+  background-color: var(--darkBlack);
   width: 150px;
   height: 60px;
   padding: 0.5rem 1.5rem;
