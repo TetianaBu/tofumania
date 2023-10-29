@@ -2,9 +2,9 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export default async function handle(req, res) {
-  const { searchTerm } = req.query;
-console.log(searchTerm)
+export default async function GET(request) {
+  const { searchTerm } = request.query;
+  console.log(searchTerm);
   try {
     let products;
     if (searchTerm) {
@@ -25,9 +25,9 @@ console.log(searchTerm)
       products = await prisma.product.findMany();
     }
 
-    res.json({ success: true, data: products });
+    response.json({ success: true, data: products });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, error: "Internal Server Error" });
+    response.status(500).json({ success: false, error: "Internal Server Error" });
   }
 }
