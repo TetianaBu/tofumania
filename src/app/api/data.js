@@ -4,18 +4,21 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
-    return res.status(405).end(); 
+    return res.status(405).end();
   }
 
   const searchTerm = req.query.searchTerm;
+
+  // Check if searchTerm is undefined or null, set it to an empty string if so
+  const sanitizedSearchTerm = searchTerm || "";
 
   try {
     const filteredData = await prisma.product.findMany({
       where: {
         OR: [
-          { title: { contains: searchTerm, mode: "insensitive" } },
-          { producer: { contains: searchTerm, mode: "insensitive" } },
-          { hardness: { contains: searchTerm, mode: "insensitive" } },
+          { title: { contains: sanitizedSearchTerm, mode: "insensitive" } },
+          { producer: { contains: sanitizedSearchTerm, mode: "insensitive" } },
+          { hardness: { contains: sanitizedSearchTerm, mode: "insensitive" } },
         ],
       },
     });

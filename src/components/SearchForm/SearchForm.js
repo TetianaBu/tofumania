@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import TextInput from "./TextInput.js";
 import SearchResult from "./SearchResult.js";
 
+
 import styles from "./SearchForm.module.css";
 
-const ENDPOINT = "/api/data";
+const ENDPOINT = "https://tofumania-tetianabu.vercel.app/api/data";
 
 function SearchForm() {
+
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState(null);
 
@@ -21,12 +23,14 @@ function SearchForm() {
     const url = `${ENDPOINT}?searchTerm=${searchTerm}`;
 
     const response = await fetch(url);
+    console.log(url);
     const json = await response.json();
 
     if (json.ok) {
       setSearchResults(json.filteredData);
       setStatus(json.filteredData.length > 0 ? "success" : "empty");
     } else {
+      console.log("error");
       setStatus("error");
     }
   }
