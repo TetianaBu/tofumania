@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 export default async function handle(req, res) {
   const { searchTerm } = req.query;
-
+console.log(searchTerm)
   try {
     let products;
     if (searchTerm) {

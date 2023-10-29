@@ -5,40 +5,39 @@ import SearchResult from "./SearchResult.js";
 import styles from "./SearchForm.module.css";
 import useSWR from "swr";
 
-function SearchForm() {
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+const SearchForm = () => {
   const [searchTerm, setSearchTerm] = useState("");
-
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
   const { data, error } = useSWR(
     searchTerm ? `/api/products?searchTerm=${searchTerm}` : null,
     fetcher
   );
 
-  if (error) return <div>An error occurred.</div>;
-  if (!data) return <div>Loading...</div>;
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    // setSearchTerm(event.target.value); // No need to set searchTerm here, it's managed by the input field.
+  };
+
+  if (error) {
+    console.error("Error fetching data:", error);
+    return <div>An error occurred while fetching data.</div>;
+  }
 
   return (
     <div className={styles.container}>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-        }}
-        className={styles.form}
-      >
+      <form onSubmit={handleFormSubmit} className={styles.form}>
         <TextInput
           required={true}
           label="Search for:"
           placeholder="firm polsoja"
           value={searchTerm}
-          onChange={(event) => {
-            setSearchTerm(event.target.value);
-          }}
+          onChange={(event) => setSearchTerm(event.target.value)}
         />
         <button type="submit">Find</button>
       </form>
       <div className={styles.responseContainer}>
-        {data && (
+        {data ? (
           <div className={styles.successContainer}>
             <h2>Search Results:</h2>
             <div className={styles.searchResults}>
@@ -47,10 +46,12 @@ function SearchForm() {
               ))}
             </div>
           </div>
+        ) : (
+          searchTerm && <div>Loading...</div>
         )}
       </div>
     </div>
   );
-}
+};
 
 export default SearchForm;
