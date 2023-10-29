@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export default async function GET(request) {
+export default async function handler(request) {
   const { searchTerm } = request.query;
   console.log(searchTerm);
   try {
@@ -31,3 +31,5 @@ export default async function GET(request) {
     response.status(500).json({ success: false, error: "Internal Server Error" });
   }
 }
+
+export { handler as GET, handler as POST };
