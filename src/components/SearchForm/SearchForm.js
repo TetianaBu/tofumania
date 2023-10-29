@@ -5,18 +5,26 @@ import SearchResult from "./SearchResult.js";
 import styles from "./SearchForm.module.css";
 import useSWR from "swr";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const ENDPOINT = 'https://tofumania.vercel.app/api/products';
+
+async function fetcher(endpoint) {
+  const response = await fetch(endpoint);
+  const json = await response.json();
+
+  return json.data;
+}
+
 
 const SearchForm = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { data, error } = useSWR(
-    searchTerm ? `/api/products?searchTerm=${searchTerm}` : null,
+    searchTerm ? `${ENDPOINT}?searchTerm=${searchTerm}` : null,
     fetcher
   );
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    // setSearchTerm(event.target.value); // No need to set searchTerm here, it's managed by the input field.
+    setSearchTerm(event.target.value); 
   };
 
   if (error) {
