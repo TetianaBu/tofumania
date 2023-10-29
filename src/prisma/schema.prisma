@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model pets {
+  name  String? @db.VarChar(255)
+  owner String? @db.VarChar(255)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model product {
+  title    String? @db.VarChar(255)
+  producer String? @db.VarChar(255)
+  hardness String? @db.VarChar(255)
+
+  @@ignore
+}
+
+model Product {
+    id          String   @id
+    title       String
+    producer    String
+    hardness    String
+    seasoning   Boolean
+    caloriesPer100 Int
+    proteinPer100  Int
+    rating      String?
+}
