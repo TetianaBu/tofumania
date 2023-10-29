@@ -2,41 +2,30 @@
 import React, { useState } from "react";
 import TextInput from "./TextInput.js";
 import SearchResult from "./SearchResult.js";
-
-
 import styles from "./SearchForm.module.css";
-
-const ENDPOINT = "https://tofumania-tetianabu.vercel.app/api/data";
+import useSWR from "swr";
 
 function SearchForm() {
-
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState(null);
 
-  // idle | loading | success | error | empty
-  const [status, setStatus] = useState("idle");
-  async function handleSearch(event) {
-    event.preventDefault();
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-    setStatus("loading");
+  const { data, error } = useSWR(
+    searchTerm ? `/api/products?searchTerm=${searchTerm}` : null,
+    fetcher
+  );
 
-    const url = `${ENDPOINT}?searchTerm=${searchTerm}`;
+  if (error) return <div>An error occurred.</div>;
+  if (!data) return <div>Loading...</div>;
 
-    const response = await fetch(url);
-    console.log(url);
-    const json = await response.json();
-
-    if (json.ok) {
-      setSearchResults(json.filteredData);
-      setStatus(json.filteredData.length > 0 ? "success" : "empty");
-    } else {
-      console.log("error");
-      setStatus("error");
-    }
-  }
   return (
     <div className={styles.container}>
-      <form onSubmit={handleSearch} className={styles.form}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+        className={styles.form}
+      >
         <TextInput
           required={true}
           label="Search for:"
@@ -46,17 +35,14 @@ function SearchForm() {
             setSearchTerm(event.target.value);
           }}
         />
-        <button>Find</button>
+        <button type="submit">Find</button>
       </form>
       <div className={styles.responseContainer}>
-        {status === "loading" && <p>Searching...</p>}
-        {status === "error" && <p>Oww, something went wrong!</p>}
-        {status === "empty" && <p>Sorry, no results</p>}
-        {status === "success" && (
+        {data && (
           <div className={styles.successContainer}>
             <h2>Search Results:</h2>
             <div className={styles.searchResults}>
-              {searchResults?.map((result) => (
+              {data.filteredData.map((result) => (
                 <SearchResult key={result.id} result={result} />
               ))}
             </div>
@@ -66,4 +52,5 @@ function SearchForm() {
     </div>
   );
 }
+
 export default SearchForm;

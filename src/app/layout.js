@@ -1,7 +1,7 @@
 import "./reset.css";
 import { Jura } from "next/font/google";
-import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { APPTITLE } from "../constants";
 
 const jura = Jura({
